@@ -15,6 +15,12 @@ class DocumentTypeController extends Controller
         $this->documentTypeService = $documentTypeService;
     }
 
+    /**
+     * Store a new document type from the incoming request.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function store(DocumentTypeRequest $request)
     {
         $documentType = $request->all();
