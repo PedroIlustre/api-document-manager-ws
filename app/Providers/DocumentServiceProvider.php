@@ -41,11 +41,7 @@ class DocumentServiceProvider extends ServiceProvider
 
 		$this->setResponse();
 
-		return [
-			'message' => $this->msg, 
-			'data' => $data ? $data : '', 
-			'http_response' => $this->httpResponse
-		];
+		return ['message' => $this->msg, 'data' => $data ? $data : '', 'http_response' => $this->httpResponse];
 	}
 
 	/**
