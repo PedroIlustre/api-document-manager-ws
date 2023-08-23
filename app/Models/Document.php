@@ -18,7 +18,8 @@ class Document extends File
 
     public $fillable = [
         'path',
-        'document_type_id'
+        'name',
+        'document_type_id',
     ];
 
     public function documentType()

@@ -1,4 +1,5 @@
 # api-document-manager-ws
+Task: Develop a robust document management microservice using Laravel (API with its own database) with the following functionality:
 
 1. Add New Document Type:
     - Implement a feature to add a new document type, including the necessary database schema modification and PDF template creation.

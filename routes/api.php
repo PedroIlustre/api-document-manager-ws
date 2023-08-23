@@ -20,6 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/new-document-type', [DocumentTypeController::class, 'store']);
-Route::post('/new-upload', [DocumentController::class, 'store']);
+Route::post('new-document-type', [DocumentTypeController::class, 'store']);
+Route::post('new-upload', [DocumentController::class, 'store']);
 

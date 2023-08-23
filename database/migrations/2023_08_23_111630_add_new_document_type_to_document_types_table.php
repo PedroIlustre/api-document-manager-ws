@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         DB::table('document_types')->insert([
-            ['id' => Str::uuid(), 'name' => 'New Document Type', 'created_at' => now(), 'updated_at' => now()],
+            ['id' => Str::uuid(), 'name' => 'New Document Type', 'type' => 'OFFICIAL', 'created_at' => now(), 'updated_at' => now()],
         ]);
     }
 

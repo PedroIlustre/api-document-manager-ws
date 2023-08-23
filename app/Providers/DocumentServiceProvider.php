@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Helpers\DocumentTypeHelper;
 use App\Models\Document;
+use App\Repositories\DocumentRepository;
 use Illuminate\Support\ServiceProvider;
 
 class DocumentServiceProvider extends ServiceProvider
@@ -12,11 +13,13 @@ class DocumentServiceProvider extends ServiceProvider
 
 	private $msg;
 
-	private $filePath = '';
+	private $exceptionMessage;
 
-	private $exceptionMessage = '';
-
-	public function __construct() {}
+	public function __construct(DocumentRepository $documentRepository) 
+	{
+		$this->documentRepository = $documentRepository;
+		$this->exceptionMessage = '';
+	}
 
 	/**
      * Stores a file/document
@@ -24,23 +27,25 @@ class DocumentServiceProvider extends ServiceProvider
      * @param \Illuminate\Http\UploadedFile $file
      * @return array
      */
-	public function store($file)
+	public function store($file, $documentType, $name)
 	{
-		$fileType = $file->getClientOriginalExtension();
-		$filename = time() . '_' . $file->getClientOriginalName();
-
 		try {
-			$this->filePath = $file->storeAs('uploads', $filename, 'local');
-			Document::create([
-				'name' => $filename,
-				'path' => $this->filePath,
-				'document_type_id' => $this->getDocumentTypeId($fileType)
-			]);
+			#store file in server, in that case localy.
+			$data['path'] = $this->storeOnServer($file);
+			$data['name'] = $name;
+			$data['document_type_id'] = DocumentTypeHelper::getDocumentTypeIdByType($documentType);
+			$this->documentRepository->store($data);
 		} catch (\Exception $e) {
 			$this->exceptionMessage = $e->getMessage(); 
 		}
+
 		$this->setResponse();
-		return ['message' => $this->msg, 'data' => $this->filePath, 'http_response' => $this->httpResponse];
+
+		return [
+			'message' => $this->msg, 
+			'data' => $data ? $data : '', 
+			'http_response' => $this->httpResponse
+		];
 	}
 
 	/**
@@ -61,14 +66,14 @@ class DocumentServiceProvider extends ServiceProvider
 	}
 
 	/**
-	 * Get the document type ID based on the file type response from Helper
+	 * Store the file on the server.
 	 *
-	 * @param string $fileType
-	 * @return string|null
+	 * @param \Illuminate\Http\UploadedFile $file
+	 * @return string The stored file path
 	 */
-	private function getDocumentTypeId($fileType)
+	private function storeOnServer($file)
 	{
-		return DocumentTypeHelper::getDocumentTypeIdByFileName($fileType);
+		$filename = time() . '_' . $file->getClientOriginalName();
+		return $file->storeAs('uploads', $filename, 'local');
 	}
-	
 }

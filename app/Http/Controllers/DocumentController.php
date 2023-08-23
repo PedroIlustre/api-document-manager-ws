@@ -23,11 +23,11 @@ class DocumentController extends Controller
     {
         if ($request->hasFile('file')) {
             $file = $request->file('file');
-            $response = $this->documentServiceProvider->store($file);
+            $response = $this->documentServiceProvider->store($file, $request->document_type, $request->name);
                     
             return response()->json($response);
         }
 
-        return response()->json(['message' => 'Nenhum arquivo enviado'], 400);
+        return response()->json(['message' => 'File not found'], 400);
     }
 }

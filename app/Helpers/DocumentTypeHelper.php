@@ -10,22 +10,22 @@ class DocumentTypeHelper
 	/**
      * Get the document type corresponding to the file name.
      *
-     * @param string $fileType
+     * @param string $documentType
      * @return \Illuminate\Database\Eloquent\Collection
      */
-	public static function getDocumentTypeByFileName($fileType)
+	public static function getDocumentTypeByType($documentType)
     {
-        return DocumentType::where('name',$fileType)->first();
+        return DocumentType::where('type', $documentType)->firstOrFail();
 	}
 
 	/**
      * Get the document type ID corresponding to the file name.
      *
-     * @param string $fileType
+     * @param string $documentType
      * @return string|null
      */
-	public static function getDocumentTypeIdByFileName($fileType)
+	public static function getDocumentTypeIdByType($documentType)
     {
-        return self::getDocumentTypeByFileName($fileType)->id;
+        return self::getDocumentTypeByType($documentType)->id;
 	}
 }

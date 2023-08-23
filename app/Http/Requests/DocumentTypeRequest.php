@@ -27,7 +27,6 @@ class DocumentTypeRequest extends FormRequest
                 'required',
                 'string',
                 'max:255',
-                Rule::in(['pdf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'txt', 'csv', 'jpg', 'jpeg', 'png', 'gif']),
             ],
         ];
     }
