@@ -6,7 +6,9 @@ SETUP
 - Inside the container run "composer install"
 - Inside the conainter run "php artisan migrate"
 
-Done. The project is ready to run!
+You made it!
+The project is ready to run!
+Have fun :) 
 
 It was created two api-endpoints to proccedd with part of the assingment:
 "/api/new-document-type" and "/api/new-document"
