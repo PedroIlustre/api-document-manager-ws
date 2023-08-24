@@ -1,6 +1,6 @@
 # api-document-manager-ws
 SETUP
-- Docker is needed
+- Docker is required
 - After cloning the repo run "docker-compose up -d --build" 
 - Access the container "document-manager-app" by using docker exec -it [container-id] /bin/bash
 - Inside the container run "composer install"
