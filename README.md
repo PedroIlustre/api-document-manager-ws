@@ -10,6 +10,9 @@ You made it!
 The project is ready to run!
 Have fun :) 
 
+------ 
+API INSTRUCTIONS
+
 It was created two api-endpoints to proccedd with part of the assingment:
 "/api/new-document-type" and "/api/new-document"
 
