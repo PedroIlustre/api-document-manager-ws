@@ -1,4 +1,13 @@
 # api-document-manager-ws
+SETUP
+- Docker is needed
+- After cloning the repo run "docker-compose up -d --build" 
+- Access the container "document-manager-app" by using docker exec -it [container-id] /bin/bash
+- Inside the container run "composer install"
+- Inside the conainter run "php artisan migrate"
+
+Done. The project is ready to run!
+
 It was created two api-endpoints to proccedd with part of the assingment:
 "/api/new-document-type" and "/api/new-document"
 
