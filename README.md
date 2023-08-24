@@ -1,11 +1,20 @@
 # api-document-manager-ws
-Task: Develop a robust document management microservice using Laravel (API with its own database) with the following functionality:
+It was created two api-endpoints to proccedd with part of the assingment:
+"/api/new-document-type" and "/api/new-document"
 
-1. Add New Document Type:
-    - Implement a feature to add a new document type, including the necessary database schema modification and PDF template creation.
+For "/api/new-document-type" here some important infos about settings:
+- it is not necessary set any Query Paramether
+- Authorization type is "No Auth"
+- No aditional header is necessary
+- At the body request is necessary to choose "form-data" and add two parameters:
+    - "name" (text)
+    - "type" (text)
 
-2. Store Column Values for Document Types:
-    - Enable the ability to save column values specific to each document type in the database, allowing users to input and store relevant information.
-
-3. Download PDF with Saved Values:
-    - Implement a functionality to generate a PDF with the saved column values for a specific document, allowing users to download the document with the entered information.
+For "/api/new-upload" here some important infos about settings:
+- it is not necessary set any Query Paramether
+- Authorization type is "No Auth"
+- No aditional header is necessary
+- At the body request is necessary to choose "form-data" and add two parameters:
+    - "file" (type 'file' selected); The value should be a file to be uploaded
+    - "name" (text); The value could be anything except for empty
+    - "document_type" (text); The value should have the name of a document_type registered in the DB;
